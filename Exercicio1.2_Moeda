@@ -1,0 +1,14 @@
+fun main() {
+    val coin = Coin()
+    println("After you flipped the coin you got ${coin.roll()}!")
+    
+}
+
+class Coin() {
+    fun roll(): String {
+        val x = (1..2).random() 
+        if (x is 1) {
+            return println("Cara")
+        }else return println("Croa")
+    }
+}
