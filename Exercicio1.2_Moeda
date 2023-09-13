@@ -1,14 +1,35 @@
+//com um range
+
 fun main() {
     val coin = Coin()
     println("After you flipped the coin you got ${coin.roll()}!")
-    
 }
 
 class Coin() {
     fun roll(): String {
-        val x = (1..2).random() 
-        if (x is 1) {
-            return println("Cara")
-        }else return println("Croa")
+        val x = (1..2).random()
+        if (x == 1) {
+            return "Cara"
+        } else {
+            return "Cora"
+        }
+    }
+}
+
+
+
+// com uma lista
+
+fun main() {
+    val coin = Coin()
+    println("After you flipped the coin you got ${coin.roll()}!")
+}
+
+class Coin() {
+    private val sides = listOf("Cara", "Cora")
+
+    fun roll(): String {
+        val randomIndex = (0 until sides.size).random()
+        return sides[randomIndex]
     }
 }
