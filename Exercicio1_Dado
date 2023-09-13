@@ -1,0 +1,13 @@
+fun main() {
+   val myFirstDice = Dice(5, "pink")
+    println("Your ${myFirstDice.numSides} sided dice rolled ${myFirstDice.roll()} and is ${myFirstDice.cor}!")
+    
+    val mySecondDice = Dice(4, "red")
+    println(" Your ${mySecondDice.numSides} sided dice rolled ${mySecondDice.roll()} and is ${mySecondDice.cor}!")
+}
+
+class Dice( val numSides: Int, val cor:String ) {
+    fun roll(): Int {
+        return (1..numSides).random() 
+    }
+} 
