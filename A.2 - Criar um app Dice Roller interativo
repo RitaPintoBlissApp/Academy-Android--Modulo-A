@@ -1,0 +1,45 @@
+package com.example.rolldice
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+/**
+ * This activity allows the user to roll a dice and view the result
+ * on the screen.
+ */
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val rollButton: Button = findViewById(R.id.button) //encontra o button
+        rollButton.setOnClickListener { //vai definir o que vai ser feito quando se tocar no button
+            rollDice() // colocar a lógica aqui na função
+        } //podes por tudo numa linha para condensar o codigo
+    }
+
+    /**
+     * Roll the dice and update the screen with the result.
+     */
+    private fun rollDice() { //criar e lançar um dado e depois exibir o resultado na TextView.
+        // Create new Dice object with 6 sides and roll it
+        val dice = Dice(6) //dado com 6 lados
+        val diceRoll = dice.roll()
+
+
+        // Update the screen with the dice roll
+        val resultTextView: TextView = findViewById(R.id.textView) //chamar a textview
+        resultTextView.text = diceRoll.toString()
+    }
+}
+
+class Dice(val numSides: Int) {
+    //lógica para se lançar um dado
+    fun roll(): Int {
+        return (1..numSides).random()
+
+    }
+}
