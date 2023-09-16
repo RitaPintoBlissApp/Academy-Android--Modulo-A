@@ -1,0 +1,117 @@
+import kotlin.math.PI
+import kotlin.math.sqrt
+
+fun main(){
+    //val squareCabin = SquareCabin(6)
+   // val roundHut = RoundHut(3)
+    //val roundTower = RoundTower(4)
+    val squareCabin = SquareCabin(6, 50.0)
+    val roundHut = RoundHut(3, 10.0)
+    val roundTower = RoundTower(4, 15.5)
+    
+    println("\nSquare Cabin\n============")
+    println("Capacity: ${squareCabin.capacity}")
+    println("Material: ${squareCabin.buildingMaterial}")
+    println("Has room? ${squareCabin.hasRoom()}")
+    println("Floor area: ${squareCabin.floorArea()}")
+    
+    /*
+     * Para simplificar o código 
+     * with(squareCabin) {
+    println("\nSquare Cabin\n============")
+    println("Capacity: ${capacity}")
+    println("Material: ${buildingMaterial}")
+    println("Has room? ${hasRoom()}")
+    println("Floor area: ${floorArea()}")
+    }
+    */
+    
+    with(roundHut) {
+    println("\nRound Hut\n=========")
+    println("Material: ${buildingMaterial}")
+    println("Capacity: ${capacity}")
+    println("Has room? ${hasRoom()}")
+    println("Floor area: ${floorArea()}")
+    
+    with(roundTower) {
+    println("\nRound Tower\n==========")
+    println("Material: ${buildingMaterial}")
+    println("Capacity: ${capacity}")
+    println("Has room? ${hasRoom()}")
+    println("Floor area: ${floorArea()}")
+}
+}
+}
+
+
+/**
+* Defines properties common to all dwellings.
+* All dwellings have floorspace,
+* but its calculation is specific to the subclass.
+* Checking and getting a room are implemented here
+* because they are the same for all Dwelling subclasses.
+*
+* @param residents Current number of residents
+*/
+
+//classes abstratas é a que não pode ser instanciada porque não foi totalmente implementada
+abstract class Dwelling(private var residents: Int){
+    //devemos definir os elementos verdadeiros para todas os filhos desta classe
+    abstract val buildingMaterial: String // não se pode atribuir um valor, já que uma construção não específica não é feita de nenhum material específico
+    abstract val capacity: Int
+   
+    abstract fun floorArea(): Double
+    
+      fun hasRoom():Boolean {
+    return residents < capacity
+    }
+    
+    
+    fun getRoom() {
+    if (capacity > residents) {
+        residents++
+        println("You got a room!")
+    } else {
+        println("Sorry, at capacity and no rooms left.")
+    }
+}
+    
+}
+
+
+//criar subclasses
+//O constructor é chamado quando você cria uma instância de objeto de uma classe
+//Essa é uma forma abreviada de class SquareCabin constructor(residents: Int) ...
+
+class SquareCabin(residents: Int, val length: Double) : Dwelling(residents){
+    //override para indicar que essa propriedade foi definida em uma classe pai e que será modificada nessa classe
+    override val buildingMaterial = "Wood"
+    override val capacity = 6
+    
+    override fun floorArea(): Double {
+    return length * length
+}
+}
+
+//é necessário marcar a classe RoundHut com a palavra-chave open/abstract para permitir que ela seja herdada.
+open class RoundHut(residents: Int,
+   val radius: Double) : Dwelling(residents) {
+    override val buildingMaterial = "Straw"
+    override val capacity = 4
+    
+    override fun floorArea(): Double {
+    return PI * radius * radius * floors
+}
+}
+
+class RoundTower(residents: Int, radius: Double, val floors: Int = 2) : RoundHut(residents, radius) {
+    override val buildingMaterial = "Stone"
+    override val capacity = 4
+    
+    override fun floorArea(): Double {
+    return super.floorArea() * floors
+}
+}
+
+
+
