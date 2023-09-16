@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" <!-- Largura do layout igual à largura do pai (pai é o layout da tela inteira) -->
+    android:layout_height="match_parent" <!-- Altura do layout igual à altura do pai (pai é o layout da tela inteira) -->
+    android:padding="16dp" <!-- Margem interna de 16dp em todas as direções -->
+    tools:context=".MainActivity"> <!-- Contexto da atividade associada a este layout -->
+
+    <!-- Caixa de entrada de texto para inserir o custo do serviço -->
+    <EditText
+        android:id="@+id/cost_of_service"
+        android:layout_width="160dp" <!-- Largura fixa de 160dp -->
+        android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+        android:hint="Custo do Serviço" <!-- Texto de dica quando vazio -->
+        android:inputType="numberDecimal" <!-- Tipo de entrada de número decimal -->
+        app:layout_constraintStart_toStartOf="parent" <!-- Alinhamento à esquerda do pai -->
+        app:layout_constraintTop_toTopOf="parent" /> <!-- Alinhamento ao topo do pai -->
+
+    <!-- Pergunta sobre a qualidade do serviço -->
+    <TextView
+        android:id="@+id/service_question"
+        android:layout_width="wrap_content" <!-- Largura ajustável ao conteúdo -->
+        android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+        android:text="Como foi o serviço?" <!-- Texto exibido -->
+        app:layout_constraintStart_toStartOf="parent" <!-- Alinhamento à esquerda do pai -->
+        app:layout_constraintTop_toBottomOf="@id/cost_of_service" /> <!-- Alinhamento abaixo do elemento cost_of_service -->
+
+    <!-- Grupo de botões de opções de gorjeta -->
+    <RadioGroup
+        android:id="@+id/tip_options"
+        android:layout_width="wrap_content" <!-- Largura ajustável ao conteúdo -->
+        android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+        android:checkedButton="@id/option_twenty_percent" <!-- Botão inicialmente selecionado -->
+        android:orientation="vertical" <!-- Orientação vertical -->
+        app:layout_constraintStart_toStartOf="parent" <!-- Alinhamento à esquerda do pai -->
+        app:layout_constraintTop_toBottomOf="@id/service_question"> <!-- Alinhamento abaixo do elemento service_question -->
+
+        <!-- Opção de gorjeta incrível (20%) -->
+        <RadioButton
+            android:id="@+id/option_twenty_percent"
+            android:layout_width="wrap_content" <!-- Largura ajustável ao conteúdo -->
+            android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+            android:text="Incrível (20%)" /> <!-- Texto do botão -->
+
+        <!-- Opção de gorjeta boa (18%) -->
+        <RadioButton
+            android:id="@+id/option_eighteen_percent"
+            android:layout_width="wrap_content" <!-- Largura ajustável ao conteúdo -->
+            android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+            android:text="Boa (18%)" /> <!-- Texto do botão -->
+
+        <!-- Opção de gorjeta razoável (15%) -->
+        <RadioButton
+            android:id="@+id/option_fifteen_percent"
+            android:layout_width="wrap_content" <!-- Largura ajustável ao conteúdo -->
+            android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+            android:text="Razoável (15%)" /> <!-- Texto do botão -->
+    </RadioGroup>
+
+    <!-- Interruptor para arredondar a gorjeta -->
+    <Switch
+        android:id="@+id/round_up_switch"
+        android:layout_width="0dp" <!-- Largura ajustável ao espaço disponível -->
+        android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+        android:checked="true" <!-- Inicialmente marcado -->
+        android:text="Arredondar a gorjeta?" <!-- Texto exibido -->
+        app:layout_constraintEnd_toEndOf="parent" <!-- Alinhamento à direita do pai -->
+        app:layout_constraintStart_toStartOf="@id/tip_options" <!-- Alinhamento à esquerda do elemento tip_options -->
+        app:layout_constraintTop_toBottomOf="@id/tip_options" /> <!-- Alinhamento abaixo do elemento tip_options -->
+
+    <!-- Botão para calcular a gorjeta -->
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="0dp" <!-- Largura ajustável ao espaço disponível -->
+        android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+        android:text="Calcular" <!-- Texto do botão -->
+        app:layout_constraintEnd_toEndOf="parent" <!-- Alinhamento à direita do pai -->
+        app:layout_constraintStart_toStartOf="parent" <!-- Alinhamento à esquerda do pai -->
+        app:layout_constraintTop_toBottomOf="@id/round_up_switch" /> <!-- Alinhamento abaixo do elemento round_up_switch -->
+
+    <!-- Resultado da gorjeta -->
+    <TextView
+        android:id="@+id/tip_result"
+        android:layout_width="wrap_content" <!-- Largura ajustável ao conteúdo -->
+        android:layout_height="wrap_content" <!-- Altura ajustável ao conteúdo -->
+        android:text="Valor da Gorjeta" <!-- Texto exibido -->
+        app:layout_constraintEnd_toEndOf="parent" <!-- Alinhamento à direita do pai -->
+        app:layout_constraintTop_toBottomOf="@id/calculate_button" /> <!-- Alinhamento abaixo do elemento calculate_button -->
+</androidx.constraintlayout.widget.ConstraintLayout>
