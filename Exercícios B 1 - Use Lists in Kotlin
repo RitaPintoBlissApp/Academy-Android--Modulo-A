@@ -1,0 +1,176 @@
+/*fun main() {
+   ###############################################################################################################
+    * ########################################################
+    * ########################################################
+    * PRIMEIRO EXERCICIOS
+    * val numbers: List<Int> = listOf(1 , 2, 3, 4, 5, 6) //read only list of integers
+    
+    println("List: $numbers")
+    println("Size: ${numbers.size}")
+    println("First element: ${numbers[0]}")
+    println("Second element: ${numbers[1]}")
+    
+    //calcular o index e o último numero
+    println("Last index: ${numbers.size - 1}")
+	println("Last element: ${numbers[numbers.size - 1]}")
+    
+    //método contain
+    println("Contains 4? ${numbers.contains(4)}")
+	println("Contains 7? ${numbers.contains(7)}")
+    
+    
+    //read only 
+    val colors = listOf("green", "orange", "blue")
+    println("Reversed list: ${colors.reversed()}")
+	println("List: $colors")
+    
+    println("Sorted list: ${colors.sorted()}")
+    
+    ########################################################
+    ########################################################
+    SEGUNDO EXERCICIO
+    //adicionar um elemnto de cada vez à lista add
+    val entrees: MutableList<String> = mutableListOf()
+    println("Add noodles: ${entrees.add("noodles")}")
+    println("Add spaghetti: ${entrees.add("spaghetti")}")
+	println("Entrees: $entrees")
+    
+    //adicionar vários à lista addall
+    val moreItems = listOf("ravioli", "lasagna", "fettuccine")
+	println("Add list: ${entrees.addAll(moreItems)}")
+	println("Entrees: $entrees")
+    
+    //e um numero?
+    //println("Add list: ${entrees.add(10)}")
+	//println("Entrees: $entrees")
+    //erro
+    
+    //remover remove()
+    println("Add list: ${entrees.remove("lasagna")}")
+	println("Entrees: $entrees")
+    
+    //se removeres algo que não existe o programa tbm se vai queixar
+    
+    
+    // e se eu quiser limpar a lista ?
+    entrees.clear()
+	println("Entrees: $entrees")
+    
+    //e se eu quiser saber se está vazia?
+    println("Empty? ${entrees.isEmpty()}")
+    
+    ########################################################
+    ########################################################
+    TERCEIRO EXERCICIO
+    
+    val guestsPerFamily = listOf(2, 4, 1, 3)
+    var totalGuests = 0 //inicialização que conta as valores das posições 
+    var index = 0 //inicialização do index que conta as posições da lista
+    while (index < guestsPerFamily.size) {
+    totalGuests += guestsPerFamily[index]
+    index++
+
+    }
+    println("Total Guest Count: $totalGuests") 
+    val names = listOf("Jessica", "Henry", "Alicia","Jose")
+    for (name in names){
+        println("$name - Number of characters: ${name.length}")
+    
+    }}*/
+    
+    open class Item(val name: String, val price: Int)
+    
+    //override toString() method 
+    class Noodles : Item("Noodles", 10){
+        override fun toString(): String{
+            return name
+        }
+    }
+     //usar uma lista para casa vegetal
+    class Vegetables(vararg val toppings: List<Strings>): Item("vegetables",5){
+        override fun toString() : String{
+            if (toppings.isEmpty()){
+                return "$name Chef´s Choice"
+            }
+            else {
+                return name + " " + toppings.joinToString()
+            }
+        }
+    }
+    
+    //Methods: add item, add multiple items, print order summary (including price)
+    
+    class Order(val orderNumber: Int) {
+        
+    private val itemList = mutableListOf<Item>() //  and initialize it as an empty MutableList that can hold elements of type Item
+
+    fun addItem(newItem: Item): Order { // adiciona um novo item á lista
+        itemList.add(newItem)
+        return this
+    }
+
+    fun addAll(newItems: List<Item>): Order { //pega numa lista e coloca a mesam numa outra lista
+        itemList.addAll(newItems)
+        return this
+    }
+
+    fun print() {
+        println("Order #${orderNumber}")
+        var total = 0
+        for (item in itemList) {
+            println("${item}: $${item.price}")
+            total += item.price
+        }
+        println("Total: $${total}")
+    }
+}
+
+    
+    fun main(){
+ val ordersList = mutableListOf<Order>()
+
+    // Add an item to an order
+    val order1 = Order(1)
+    order1.addItem(Noodles())
+    ordersList.add(order1)
+
+    // Add multiple items individually
+    val order2 = Order(2)
+    order2.addItem(Noodles())
+    order2.addItem(Vegetables())
+    ordersList.add(order2)
+
+    // Add a list of items at one time
+    val order3 = Order(3)
+    val items = listOf(Noodles(), Vegetables("Carrots", "Beans", "Celery"))
+    order3.addAll(items)
+    ordersList.add(order3)
+
+    // Use builder pattern
+    val order4 = Order(4)
+        .addItem(Noodles())
+        .addItem(Vegetables("Cabbage", "Onion"))
+    ordersList.add(order4)
+
+    // Create and add order directly
+    ordersList.add(
+        Order(5)
+            .addItem(Noodles())
+            .addItem(Noodles())
+            .addItem(Vegetables("Spinach"))
+    )
+
+    // Print out each order
+    for (order in ordersList) {
+        order.print()
+        println()
+    }
+        
+    }
+    
+    
+    
+    
+    
+    
+ 
